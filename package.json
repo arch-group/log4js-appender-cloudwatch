@@ -1,0 +1,33 @@
+{
+	"name": "log4js-appender-cloudwatch",
+	"version": "0.0.0",
+	"license": "Apache-2.0",
+	"funding": "https://github.com/sponsors/xseman",
+	"homepage": "https://github.com/xseman/log4js-appender-cloudwatch#readme",
+	"description": "Log4js cloudwatch appender",
+	"author": "Filip Seman <filip.seman@pm.me>",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/xseman/log4js-appender-cloudwatch.git"
+	},
+	"engines": {
+		"node": ">=18.18"
+	},
+	"files": [
+		"index.js",
+		"index.d.ts"
+	],
+	"main": "./index.js",
+	"types": "./index.d.ts",
+	"scripts": {
+		"test": "node --test --env-file=.env *.test.mjs",
+		"test:watch": "node --test --watch --env-file=.env *.test.mjs"
+	},
+	"dependencies": {
+		"@aws-sdk/client-cloudwatch-logs": "^3.485.0",
+		"log4js": "~6.9.0"
+	},
+	"devDependencies": {
+		"dprint": "^0.45.0"
+	}
+}
