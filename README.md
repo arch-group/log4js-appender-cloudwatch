@@ -1,11 +1,15 @@
-# `AWS CloudWatch` log4js appender
+# log4js appender - AWS CloudWatch
 
 This module provides a custom appender for [log4js][log4js_github] that
 sends logs to AWS [CloudWatch][aws_cloudwatch] using the AWS [v3 SDK][cloudwatch_sdk].
 
+[aws_cloudwatch]: https://aws.amazon.com/cloudwatch/
+[cloudwatch_sdk]: https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/client/cloudwatch-logs/
+[log4js_github]: https://log4js-node.github.io/log4js-node/
+
 ## Installation
 
-**npm registry**
+### npm registry
 
 ```sh
 npm install log4js-appender-cloudwatch
@@ -88,31 +92,34 @@ import "log4js-appender-cloudwatch"
 
 ### Example
 
-```json
-{
-    "appenders": {
-           "cloudwatch": {
-                "type": "log4js-appender-cloudwatch",
-                "accessKeyId": "<secret>",
-                "secretAccessKey": "<secret>",
-                "region": "<config>",
-                "logGroupName": "<config>",
-                "logStreamName": "<config>",
-                "batchSize": 10,
-                "bufferTimeout": 1000,
-            }
-    },
-    "categories": {
-        "default": {
-            "level": "debug",
-            "appenders": [
-                "cloudwatch"
-            ]
-        }
-    }
-}
-```
+```ts
+import log4js from "log4js";
 
-[aws_cloudwatch]: https://aws.amazon.com/cloudwatch/
-[cloudwatch_sdk]: https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/client/cloudwatch-logs/
-[log4js_github]: https://log4js-node.github.io/log4js-node/
+import "log4js-appender-cloudwatch";
+
+log4js.configure({
+	appenders: {
+			cloudwatch: {
+				type: "log4js-appender-cloudwatch",
+				accessKeyId: "<secret>",
+				secretAccessKey: "<secret>",
+				region: "<config>",
+				logGroupName: "<config>",
+				logStreamName: "<config>",
+				batchSize: 10,
+				bufferTimeout: 1000, // in ms
+			}
+	},
+	categories: {
+		default: {
+			level: "debug",
+			appenders: [
+				"cloudwatch"
+			]
+		}
+	}
+});
+
+const log = log4js.getLogger();
+// ...
+```
