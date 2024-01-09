@@ -15,6 +15,65 @@ sends logs to AWS [CloudWatch][aws_cloudwatch] using the AWS [v3 SDK][cloudwatch
 npm install log4js-appender-cloudwatch
 ```
 
+## Configuration
+
+### AWS
+
+If you are using roles, you will need the following roles:
+
+```plain
+logs:DescribeLogGroups
+logs:DescribeLogStreams
+logs:CreateLogGroup
+logs:CreateLogStream
+logs:PutLogEvents
+```
+
+### TypeScript
+
+If you're using TypeScript, importing this library as a side effect will
+automatically merge the log4js interface `Appenders`. This merging enables
+autocomplete for the appenders configuration, providing convenient access to its
+properties.
+
+```ts
+import "log4js-appender-cloudwatch"
+```
+
+### Example
+
+```ts
+import log4js from "log4js";
+
+import "log4js-appender-cloudwatch";
+
+log4js.configure({
+	appenders: {
+			cloudwatch: {
+				type: "log4js-appender-cloudwatch",
+				accessKeyId: "<secret>",
+				secretAccessKey: "<secret>",
+				region: "<config>",
+				logGroupName: "<config>",
+				logStreamName: "<config>",
+				batchSize: 10,
+				bufferTimeout: 1000, // in ms
+			}
+	},
+	categories: {
+		default: {
+			level: "debug",
+			appenders: [
+				"cloudwatch"
+			]
+		}
+	}
+});
+
+const log = log4js.getLogger();
+// ...
+```
+
 ## Options
 
 ### type
@@ -76,53 +135,6 @@ _Required_\
 Type: `string`
 
 Your AWS secret access key for authentication.
-
-## Configuration
-
-### TypeScript
-
-If you're using TypeScript, importing this library as a side effect will
-automatically merge the log4js interface `Appenders`. This merging enables
-autocomplete for the appenders configuration, providing convenient access to its
-properties.
-
-```ts
-import "log4js-appender-cloudwatch"
-```
-
-### Example
-
-```ts
-import log4js from "log4js";
-
-import "log4js-appender-cloudwatch";
-
-log4js.configure({
-	appenders: {
-			cloudwatch: {
-				type: "log4js-appender-cloudwatch",
-				accessKeyId: "<secret>",
-				secretAccessKey: "<secret>",
-				region: "<config>",
-				logGroupName: "<config>",
-				logStreamName: "<config>",
-				batchSize: 10,
-				bufferTimeout: 1000, // in ms
-			}
-	},
-	categories: {
-		default: {
-			level: "debug",
-			appenders: [
-				"cloudwatch"
-			]
-		}
-	}
-});
-
-const log = log4js.getLogger();
-// ...
-```
 
 ## Testing
 
