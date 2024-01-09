@@ -26,21 +26,23 @@ const config = {
 	bufferTimeout: 1_000,
 };
 
-/** @type {import("log4js").LoggingEvent} */
-const logEvent = {
-	categoryName: "default",
-	startTime: new Date(),
-	data: ["test"],
-	pid: 0,
-	fileName: "",
-	lineNumber: 0,
-	columnNumber: 0,
-	callStack: "",
-	functionName: "",
-	context: null,
-	serialise: () => "",
-	level: new Level(20000, "INFO", "green"),
-};
+function makeLogEvent() {
+	/** @type {import("log4js").LoggingEvent} */
+	return {
+		categoryName: "default",
+		startTime: new Date(),
+		data: ["test"],
+		pid: 0,
+		fileName: "",
+		lineNumber: 0,
+		columnNumber: 0,
+		callStack: "",
+		functionName: "",
+		context: null,
+		serialise: () => "",
+		level: new Level(20000, "INFO", "green"),
+	};
+}
 
 const cloudwatchClient = new CloudWatchLogs({
 	region: config.region,
@@ -56,6 +58,7 @@ test("Fill batch size", async () => {
 
 	// NOTE: batch is pushed after 10 events
 	for (let i = 0; i < 10; i++) {
+		const logEvent = makeLogEvent();
 		appender(logEvent);
 	}
 	// NOTE: wait for 1 second to ensure all events are processed
@@ -80,6 +83,7 @@ test("Wait for buffer timeout", async () => {
 
 	// NOTE: batch is pushed after 10 events
 	for (let i = 0; i < 5; i++) {
+		const logEvent = makeLogEvent();
 		appender(logEvent);
 	}
 	// NOTE: wait for 1.5 second for buffer timeout
