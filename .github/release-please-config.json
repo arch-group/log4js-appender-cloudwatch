@@ -9,13 +9,14 @@
 		}
 	},
 	"changelog-sections": [
-		{ "type": "build", "section": "Maintenance" },
-		{ "type": "chore", "section": "Maintenance" },
-		{ "type": "ci", "section": "Maintenance" },
-		{ "type": "deps", "section": "Dependency updates" },
-		{ "type": "docs", "section": "Documentation" },
-		{ "type": "style", "section": "Styles" },
-		{ "type": "refactor", "section": "Refactors" },
-		{ "type": "test", "section": "Tests", "hidden": true }
+		{ "section": "Features", "type": "feat" },
+		{ "section": "Dependency updates", "type": "deps" },
+		{ "section": "Documentation", "type": "docs" },
+		{ "section": "Maintenance", "type": "build" },
+		{ "section": "Maintenance", "type": "chore" },
+		{ "section": "Maintenance", "type": "ci" },
+		{ "section": "Refactors", "type": "refactor" },
+		{ "section": "Styles", "type": "style" },
+		{ "section": "Tests", "type": "test", "hidden": true }
 	]
 }
