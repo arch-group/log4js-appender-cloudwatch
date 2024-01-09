@@ -112,7 +112,8 @@ function cloudwatch(config, layout) {
 
 	return function appender(loggingEvent) {
 		const msg = layout(loggingEvent);
-		buffer.push(msg);
+		const timestamp = loggingEvent.startTime.getTime();
+		buffer.push(msg, timestamp);
 	};
 }
 
