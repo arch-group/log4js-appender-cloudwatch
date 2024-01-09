@@ -123,3 +123,21 @@ log4js.configure({
 const log = log4js.getLogger();
 // ...
 ```
+
+## Testing
+
+To test this library during development, you'll need to provide your AWS
+credentials. These credentials should be stored securely in a `.env` file
+located at the root of your project directory.
+
+```sh
+# .env
+accessKeyId="<key>"
+secretAccessKey="<key>"
+```
+
+Then, you're ready to run tests:
+
+```sh
+npm test
+```
