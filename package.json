@@ -13,6 +13,16 @@
 	"engines": {
 		"node": ">=18.18"
 	},
+	"keywords": [
+		"logging",
+		"log",
+		"log4js",
+		"log4js-node",
+		"appender",
+		"node",
+		"cloudwatch",
+		"aws"
+	],
 	"files": [
 		"index.js",
 		"index.d.ts"
