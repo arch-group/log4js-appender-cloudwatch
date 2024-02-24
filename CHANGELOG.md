@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.3.0](https://github.com/xseman/log4js-appender-cloudwatch/compare/v0.2.0...v0.3.0) (2024-02-24)
+
+
+### Features
+
+* add typescript & resource creation ([3f4abd0](https://github.com/xseman/log4js-appender-cloudwatch/commit/3f4abd0f78a744a84ec7f0415a9da761305d97df))
+
+
+### Maintenance
+
+* add package keywords ([e13dd8e](https://github.com/xseman/log4js-appender-cloudwatch/commit/e13dd8e345311b72d76c56d8594bd44afd6411da))
+* **release:** update changelog sections ([de665c8](https://github.com/xseman/log4js-appender-cloudwatch/commit/de665c8d0859758f9d5f63812c1ce5831f88b390))
+
 ## [0.2.0](https://github.com/xseman/log4js-appender-cloudwatch/compare/v0.1.0...v0.2.0) (2024-01-09)
 
 
