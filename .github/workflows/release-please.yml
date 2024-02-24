@@ -31,6 +31,8 @@ jobs:
 
             - if: ${{ steps.release.outputs.release_created }}
               run: |
+                  npm ci &&
+                  npm run build &&
                   npm publish --provenance --access public
               env:
                   NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

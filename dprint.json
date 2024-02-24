@@ -1,12 +1,18 @@
 {
 	"lineWidth": 100,
 	"useTabs": true,
+	"includes": [
+		"**/*.{ts,js,json,md,yml,yaml}"
+	],
 	"excludes": [
 		"**/node_modules",
-		"**/*-lock.json"
+		"**/*-lock.json",
+		"tsconfig.json",
+		"CHANGELOG.md"
 	],
 	"plugins": [
-		"https://plugins.dprint.dev/typescript-0.88.7.wasm",
-		"https://plugins.dprint.dev/json-0.19.1.wasm"
+		"https://plugins.dprint.dev/typescript-0.89.3.wasm",
+		"https://plugins.dprint.dev/json-0.19.2.wasm",
+		"https://plugins.dprint.dev/markdown-0.16.4.wasm"
 	]
 }

@@ -17,16 +17,48 @@ npm install log4js-appender-cloudwatch
 
 ## Configuration
 
-### AWS
+### Roles
 
-If you are using roles, you will need the following roles:
+**Required**
 
 ```plain
-logs:DescribeLogGroups
-logs:DescribeLogStreams
+logs:PutLogEvents
+```
+
+**To enable the appender to create a group and log stream in AWS, adition roleare
+required.**
+
+```plain
+logs:PutLogEvents
 logs:CreateLogGroup
 logs:CreateLogStream
+logs:DescribeLogStreams
+logs:DescribeLogGroups
+```
+
+**Reqired for testing.**
+
+To run tests, create `.env` with AWS access and secret keys.
+
+```plain
 logs:PutLogEvents
+logs:GetLogEvents
+```
+
+```json
+{
+	"Version": "2012-10-17",
+	"Statement": [
+		{
+			"Action": [
+				"logs:PutLogEvents",
+				"logs:GetLogEvents"
+			],
+			"Effect": "Allow",
+			"Resource": "*"
+		}
+	]
+}
 ```
 
 ### TypeScript
@@ -37,7 +69,7 @@ autocomplete for the appenders configuration, providing convenient access to its
 properties.
 
 ```ts
-import "log4js-appender-cloudwatch"
+import "log4js-appender-cloudwatch";
 ```
 
 ### Example
@@ -49,25 +81,25 @@ import "log4js-appender-cloudwatch";
 
 log4js.configure({
 	appenders: {
-			cloudwatch: {
-				type: "log4js-appender-cloudwatch",
-				accessKeyId: "<secret>",
-				secretAccessKey: "<secret>",
-				region: "<config>",
-				logGroupName: "<config>",
-				logStreamName: "<config>",
-				batchSize: 10,
-				bufferTimeout: 1000, // in ms
-			}
+		cloudwatch: {
+			type: "log4js-appender-cloudwatch",
+			accessKeyId: "<secret>",
+			secretAccessKey: "<secret>",
+			region: "<config>",
+			logGroupName: "<config>",
+			logStreamName: "<config>",
+			batchSize: 10,
+			bufferTimeout: 1000, // in ms
+		},
 	},
 	categories: {
 		default: {
 			level: "debug",
 			appenders: [
-				"cloudwatch"
-			]
-		}
-	}
+				"cloudwatch",
+			],
+		},
+	},
 });
 
 const log = log4js.getLogger();
