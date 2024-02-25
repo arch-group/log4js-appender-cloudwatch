@@ -107,7 +107,10 @@ class LogBuffer {
  * TODO: create async method for appender creation
  * 		 (for now log4js doesn't support async configure module)
  */
-export function cloudwatch(config: Config, layout: LayoutFunction): AppenderFunction {
+export function cloudwatch(
+	config: Config,
+	layout: LayoutFunction,
+): AppenderFunction {
 	const cloudwatch = new CloudWatchLogs({
 		region: config.region,
 		credentials: {

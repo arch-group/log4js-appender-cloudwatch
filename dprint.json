@@ -2,7 +2,7 @@
 	"lineWidth": 100,
 	"useTabs": true,
 	"includes": [
-		"**/*.{ts,js,json,md,yml,yaml}"
+		"**/*.{ts,mts,js,json,md,yml,yaml}"
 	],
 	"excludes": [
 		"**/node_modules",
