@@ -1,5 +1,27 @@
 # Changelog
 
+## [0.4.0](https://github.com/arch-group/log4js-appender-cloudwatch/compare/v0.3.0...v0.4.0) (2024-05-12)
+
+
+### Features
+
+* add default json layout & othe improvements ([418b5f9](https://github.com/arch-group/log4js-appender-cloudwatch/commit/418b5f912c7408186f8bd83d920ac4ad8ae822b9))
+
+
+### Documentation
+
+* add diagram ([b71fb35](https://github.com/arch-group/log4js-appender-cloudwatch/commit/b71fb350931baf78f3f2fcb190d7f8487f7e4335))
+
+
+### Maintenance
+
+* unused dev types ([5e7f9d1](https://github.com/arch-group/log4js-appender-cloudwatch/commit/5e7f9d1d8618c09e94c8ae6eedfde79450cb97c1))
+
+
+### Styles
+
+* formatting ([47baf01](https://github.com/arch-group/log4js-appender-cloudwatch/commit/47baf0192d3b3a8d54fe95df6a9d8629716e79d3))
+
 ## [0.3.0](https://github.com/xseman/log4js-appender-cloudwatch/compare/v0.2.0...v0.3.0) (2024-02-24)
 
 
