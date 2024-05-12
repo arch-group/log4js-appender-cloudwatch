@@ -4,10 +4,10 @@ import { before, describe, test } from "node:test";
 import { setTimeout as sleep } from "node:timers/promises";
 
 import { CloudWatchLogs } from "@aws-sdk/client-cloudwatch-logs";
-import { dummyLayout } from "log4js/lib/layouts";
+import jsonLayout from "log4js-layout-json";
 import Level from "log4js/lib/levels";
 
-import { Config, ConfigError, cloudwatch } from "./dist/index.js";
+import { cloudwatch, Config, ConfigError } from "./dist/index.js";
 
 import type { LoggingEvent } from "log4js";
 
@@ -57,10 +57,11 @@ describe("AWS Integration", () => {
 				secretAccessKey: config.secretAccessKey,
 			},
 		});
-	})
+	});
 
 	test("fill batch size", async () => {
-		const appender = cloudwatch(config, dummyLayout);
+		const layout = jsonLayout();
+		const appender = cloudwatch(config, layout);
 		const startTime = Date.now();
 
 		// NOTE: batch is pushed after 10 events
@@ -80,12 +81,16 @@ describe("AWS Integration", () => {
 		assert.equal(data.events?.length, 10);
 
 		for (const e of data.events!) {
-			assert.deepEqual(e.message, "test");
+			const data = JSON.parse(e.message!);
+			assert.equal(data.category, "default");
+			assert.equal(data.level, "INFO");
+			assert.equal(data.msg, "test");
 		}
 	});
 
 	test("wait for buffer timeout", async () => {
-		const appender = cloudwatch(config, dummyLayout);
+		const layout = jsonLayout();
+		const appender = cloudwatch(config, layout);
 		const startTime = Date.now();
 
 		// NOTE: batch is pushed after 10 events
@@ -105,8 +110,10 @@ describe("AWS Integration", () => {
 		assert.equal(data.events?.length, 5);
 
 		for (const e of data.events!) {
-			assert.deepEqual(e.message, "test");
+			const data = JSON.parse(e.message!);
+			assert.equal(data.category, "default");
+			assert.equal(data.level, "INFO");
+			assert.equal(data.msg, "test");
 		}
 	});
-})
-
+});

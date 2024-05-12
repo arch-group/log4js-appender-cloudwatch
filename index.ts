@@ -3,13 +3,11 @@ import {
 	CreateLogStreamRequest,
 	InputLogEvent,
 } from "@aws-sdk/client-cloudwatch-logs";
-
-// @ts-ignore: missing type definitions
-import { dummyLayout } from "log4js/lib/layouts";
+import jsonLayout from "log4js-layout-json";
 
 import type { RegionInputConfig } from "@smithy/config-resolver/dist-types/regionConfig/resolveRegionConfig";
 import type { AwsCredentialIdentity } from "@smithy/types/dist-types/identity/awsCredentialIdentity";
-import type { AppenderFunction, LayoutFunction, LayoutsParam, Levels } from "log4js";
+import type log4js from "log4js";
 
 export interface Config
 	extends
@@ -17,6 +15,10 @@ export interface Config
 		Pick<RegionInputConfig, "region">,
 		Pick<AwsCredentialIdentity, "accessKeyId" | "secretAccessKey">
 {
+	/**
+	 * defaults to http://npm.im/log4js-layout-json
+	 */
+	layout?: log4js.Layout;
 	/**
 	 * Maximum number of log events to include in a single batch when sending.
 	 * Once the batch size is reached, it will be sent to CloudWatch.
@@ -109,8 +111,8 @@ class LogBuffer {
  */
 export function cloudwatch(
 	config: Config,
-	layout: LayoutFunction,
-): AppenderFunction {
+	layout: log4js.LayoutFunction,
+): log4js.AppenderFunction {
 	const cloudwatch = new CloudWatchLogs({
 		region: config.region,
 		credentials: {
@@ -181,29 +183,35 @@ export function cloudwatch(
 		});
 	});
 
-	return function appender(loggingEvent) {
+	return function appender(loggingEvent: log4js.LoggingEvent): void {
 		const msg = layout(loggingEvent);
-		const timestamp = loggingEvent.startTime.getTime();
-		buffer.push(msg, timestamp);
+		const time = loggingEvent.startTime.getTime();
+
+		buffer.push(msg, time);
 	};
 }
 
 export class ConfigError extends Error {
-	override name = "ConfigError";
 	constructor(msg: string, cause?: unknown) {
 		super(msg);
 		this.cause = cause;
+		this.name = this.constructor.name;
 	}
 }
 
 export function configure(
 	config: Config,
-	layouts: LayoutsParam,
-	_findAppender: () => AppenderFunction,
-	_levels: Levels,
-): AppenderFunction {
-	const layout = layouts?.basicLayout ?? dummyLayout;
-	const appender = cloudwatch(config, layout);
+	layouts: log4js.LayoutsParam,
+	_findAppender: () => log4js.AppenderFunction,
+	_levels: log4js.Levels,
+): log4js.AppenderFunction {
+	let layout = jsonLayout();
 
+	if (config.layout) {
+		// @ts-ignore: bad typings "config: PatternToken"
+		layout = layouts.layout(config.layout.type, config.layout);
+	}
+
+	const appender = cloudwatch(config, layout);
 	return appender;
 }
