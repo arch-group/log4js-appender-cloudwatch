@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.1](https://github.com/arch-group/log4js-appender-cloudwatch/compare/v0.4.0...v0.4.1) (2024-05-12)
+
+
+### Documentation
+
+* update repo origin ([f418653](https://github.com/arch-group/log4js-appender-cloudwatch/commit/f418653ae7288c9ca367c4de4b88cc298248477d))
+
 ## [0.4.0](https://github.com/arch-group/log4js-appender-cloudwatch/compare/v0.3.0...v0.4.0) (2024-05-12)
 
 
