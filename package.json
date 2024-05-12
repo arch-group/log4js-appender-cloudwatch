@@ -3,12 +3,12 @@
 	"version": "0.4.0",
 	"license": "Apache-2.0",
 	"funding": "https://github.com/sponsors/xseman",
-	"homepage": "https://github.com/xseman/log4js-appender-cloudwatch#readme",
+	"homepage": "https://github.com/arch-group/log4js-appender-cloudwatch#readme",
 	"description": "Log4js cloudwatch appender",
 	"author": "Filip Seman <filip.seman@pm.me>",
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/xseman/log4js-appender-cloudwatch.git"
+		"url": "git+https://github.com/arch-group/log4js-appender-cloudwatch.git"
 	},
 	"engines": {
 		"node": ">=18.18"
