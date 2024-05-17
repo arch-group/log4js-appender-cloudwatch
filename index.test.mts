@@ -4,7 +4,7 @@ import { before, describe, test } from "node:test";
 import { setTimeout as sleep } from "node:timers/promises";
 
 import { CloudWatchLogs } from "@aws-sdk/client-cloudwatch-logs";
-import jsonLayout from "log4js-layout-json";
+import { layout as jsonLayout } from "log4js-layout-json";
 import Level from "log4js/lib/levels";
 
 import { cloudwatch, Config, ConfigError } from "./dist/index.js";

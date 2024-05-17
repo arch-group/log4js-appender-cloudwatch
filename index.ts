@@ -3,7 +3,7 @@ import {
 	CreateLogStreamRequest,
 	InputLogEvent,
 } from "@aws-sdk/client-cloudwatch-logs";
-import jsonLayout from "log4js-layout-json";
+import { layout as jsonLayout } from "log4js-layout-json";
 
 import type { RegionInputConfig } from "@smithy/config-resolver/dist-types/regionConfig/resolveRegionConfig";
 import type { AwsCredentialIdentity } from "@smithy/types/dist-types/identity/awsCredentialIdentity";
@@ -205,11 +205,13 @@ export function configure(
 	_findAppender: () => log4js.AppenderFunction,
 	_levels: log4js.Levels,
 ): log4js.AppenderFunction {
-	let layout = jsonLayout();
+	let layout: log4js.LayoutFunction | undefined;
 
 	if (config.layout) {
 		// @ts-ignore: bad typings "config: PatternToken"
 		layout = layouts.layout(config.layout.type, config.layout);
+	} else {
+		layout = jsonLayout();
 	}
 
 	const appender = cloudwatch(config, layout);
