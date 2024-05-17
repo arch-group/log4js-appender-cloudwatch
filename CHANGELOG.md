@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.2](https://github.com/arch-group/log4js-appender-cloudwatch/compare/v0.4.1...v0.4.2) (2024-05-17)
+
+
+### Maintenance
+
+* bump dependencies ([025cc41](https://github.com/arch-group/log4js-appender-cloudwatch/commit/025cc4132ffc55c21f21fb5b533283e42e1db1fe))
+
 ## [0.4.1](https://github.com/arch-group/log4js-appender-cloudwatch/compare/v0.4.0...v0.4.1) (2024-05-17)
 
 
