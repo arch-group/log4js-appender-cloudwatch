@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.4.1](https://github.com/arch-group/log4js-appender-cloudwatch/compare/v0.4.0...v0.4.1) (2024-05-17)
+
+
+### Documentation
+
+* update repo origin ([f418653](https://github.com/arch-group/log4js-appender-cloudwatch/commit/f418653ae7288c9ca367c4de4b88cc298248477d))
+
+
+### Maintenance
+
+* bump dependencies & refactor ([2fc6f8a](https://github.com/arch-group/log4js-appender-cloudwatch/commit/2fc6f8a22d0d2ec43251c29d010ff18af41211eb))
+* **chore:** update job source name ([7c8fa0c](https://github.com/arch-group/log4js-appender-cloudwatch/commit/7c8fa0c38782a6fa3bbdfc53247ea0ceaba18d28))
+
 ## [0.4.0](https://github.com/arch-group/log4js-appender-cloudwatch/compare/v0.3.0...v0.4.0) (2024-05-12)
 
 
