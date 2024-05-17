@@ -40,15 +40,15 @@
 		"test:watch": "node --test --watch --env-file=.env --loader=ts-node/esm index.test.mts"
 	},
 	"dependencies": {
-		"@aws-sdk/client-cloudwatch-logs": "~3.5.0",
+		"@aws-sdk/client-cloudwatch-logs": "~3.577.0",
 		"log4js-layout-json": "^0.2.0"
 	},
 	"devDependencies": {
-		"@smithy/config-resolver": "~2.1.2",
+		"@smithy/config-resolver": "~3.0.0",
 		"@types/node": "~18.18.0",
 		"dprint": "~0.45.0",
 		"ts-node": "~10.9.0",
-		"typescript": "~5.3.0"
+		"typescript": "~5.4.5"
 	},
 	"peerDependencies": {
 		"log4js": ">=6"
